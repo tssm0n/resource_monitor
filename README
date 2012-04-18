@@ -1,0 +1,15 @@
+
+Python system and resource monitor. The simple and lightweight design allows for easy extension to provide all sorts of monitoring and reporting functions. 
+
+There are 3 basic types that are used when initializing the monitoring framework:  Monitor, MonitorJob, and MonitorAlert. The latter two are base classes which you will either need to extend to write your own custom jobs and alerts, or use one of the existing types.
+
+Example:
+
+monitor = Monitor(EmailAlert("some.address@gmail.com"))
+monitor.addJob(CheckDiskSpaceJob("/", 15))
+monitor.addJob(PingJob("10.0.0.2"))
+monitor.execute()
+
+This will create a monitor with two jobs that will email the given address should either of the jobs report an error.  Simply add a python script with the above code to a cron job to monitor the system periodically.
+
+
